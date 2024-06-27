@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_point.wav-f5f1818dee78aa16b849b742b503a134.sample"
+
+[deps]
+
+source_file="res://asset/textur/car/SFX/sfx_point.wav"
+dest_files=[ "res://.import/sfx_point.wav-f5f1818dee78aa16b849b742b503a134.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

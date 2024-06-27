@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asset/textur/car/Sprites/background.png" type="Texture" id=2]
+[ext_resource path="res://asset/textur/car/SFX/sfx_wing.wav" type="AudioStream" id=3]
+[ext_resource path="res://asset/textur/car/SFX/sfx_hit.wav" type="AudioStream" id=4]
+[ext_resource path="res://asset/textur/car/SFX/sfx_point.wav" type="AudioStream" id=5]
+[ext_resource path="res://asset/textur/car/Sprites/ground.png" type="Texture" id=6]
+[ext_resource path="res://scenes/tuberias.tscn" type="PackedScene" id=7]
+[ext_resource path="res://script/tuberias_contol.gd" type="Script" id=8]
+[ext_resource path="res://script/main.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 163, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 169, 10 )
+
+[node name="main" type="Node" groups=["main"]]
+script = ExtResource( 9 )
+
+[node name="player" parent="." groups=["player"] instance=ExtResource( 1 )]
+position = Vector2( 68, 150 )
+collision_mask = 14
+contacts_reported = 2
+s = 60.0
+j = 75.0
+ss = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+
+[node name="Label" type="Label" parent="player/Camera2D"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_limit_begin = Vector2( 4300, 0 )
+
+[node name="fonds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 580, 0 )
+
+[node name="spr" type="Sprite" parent="ParallaxBackground/fonds"]
+position = Vector2( 274.125, 140 )
+scale = Vector2( 1.349, 1.332 )
+texture = ExtResource( 2 )
+
+[node name="spr2" type="Sprite" parent="ParallaxBackground/fonds"]
+position = Vector2( 80.125, 140 )
+scale = Vector2( 1.34896, 1.33203 )
+texture = ExtResource( 2 )
+
+[node name="spr3" type="Sprite" parent="ParallaxBackground/fonds"]
+position = Vector2( 468.125, 140 )
+scale = Vector2( 1.34896, 1.33203 )
+texture = ExtResource( 2 )
+
+[node name="wall" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 652.11, 0 )
+
+[node name="spr" type="Sprite" parent="ParallaxBackground/wall"]
+position = Vector2( 92.25, 305.25 )
+scale = Vector2( 1.41234, 1.59821 )
+texture = ExtResource( 6 )
+
+[node name="spr2" type="Sprite" parent="ParallaxBackground/wall"]
+position = Vector2( 527, 305.25 )
+scale = Vector2( 1.41234, 1.59821 )
+texture = ExtResource( 6 )
+
+[node name="spr3" type="Sprite" parent="ParallaxBackground/wall"]
+position = Vector2( 309.5, 305.25 )
+scale = Vector2( 1.41234, 1.59821 )
+texture = ExtResource( 6 )
+
+[node name="sfx" type="Node2D" parent="." groups=["sfx"]]
+
+[node name="1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 3 )
+
+[node name="2" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 5 )
+
+[node name="3" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 4 )
+
+[node name="limites" type="Node2D" parent="." groups=["limite"]]
+
+[node name="techo" type="KinematicBody2D" parent="limites"]
+position = Vector2( -115, 2 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="col" type="CollisionShape2D" parent="limites/techo"]
+position = Vector2( 153, 0 )
+shape = SubResource( 1 )
+
+[node name="suelo" type="KinematicBody2D" parent="limites" groups=["kill"]]
+position = Vector2( 14, 284 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="col" type="CollisionShape2D" parent="limites/suelo"]
+position = Vector2( 29, 0 )
+shape = SubResource( 2 )
+
+[node name="tuberias_contol" type="Node2D" parent="." groups=["tub"]]
+script = ExtResource( 8 )
+offset_x = 151.0
+lim_min = 50
+lim_max = 80
+
+[node name="tuberia" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 331, 55 )
+
+[node name="tuberia2" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 481, 52 )
+
+[node name="tuberia3" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 631, 55 )
+
+[node name="tuberia4" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 781, 55 )
+
+[node name="tuberia5" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 931, 55 )
+
+[node name="tuberia6" parent="tuberias_contol" instance=ExtResource( 7 )]
+position = Vector2( 1081, 55 )
